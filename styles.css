@@ -1,0 +1,542 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; /* Ensure body and html fill the entire viewport */
+    font-family: 'Roboto', Arial, sans-serif; /* Apply Roboto font family */
+    background-color: #111; /* Dark background */
+    color: #ddd; /* Light gray text */
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Ensure content can scroll and adjust based on size */
+body {
+    display: flex;
+    flex-direction: column;
+    height: auto; /* Allow the body to grow based on content */
+    overflow-y: auto; /* Enable scrolling if content overflows vertically */
+    min-height: 100vh; /* Ensure content fills the page */
+}
+
+/* Header Styles */
+header {
+    background-color: #222; /* Darker background for header */
+    padding: 15px 20px;
+    position: fixed; /* Fixed position to make it always visible */
+    top: 0; /* Stay at the top of the page */
+    left: 0;
+    width: 100%; /* Full width */
+    z-index: 10; /* Ensure it's on top of other content */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Vertically align items in the header */
+}
+
+/* Logo Styles */
+header .logo img {
+    width: 120px;
+    height: auto;
+}
+
+/* Company Name Styles */
+header .company-name {
+    color: #fff; /* White color for the company name */
+    font-size: clamp(1rem, 3vw, 2.08rem); /* 1rem minimum size, 3vw dynamic, 2.08rem max size */
+    font-weight: bold; /* Make the company name bold */
+    margin-left: 10px; /* Space between the logo and the company name */
+    white-space: nowrap; /* Prevent the text from wrapping */
+    text-shadow: 
+    0 0 5px #00cccc,  /* Light cyan glow */
+    0 0 10px #00cccc, /* Cyan glow */
+    0 0 15px #00cccc, /* Stronger cyan glow */
+    0 0 20px #00cccc, /* Darker green glow */
+    0 0 25px #00cccc,  /* Even darker green glow */
+    0 0 30px #00cccc,  /* Even stronger green glow */
+    0 0 35px #00cccc; /* Sharper glow with green */
+}
+
+/* Navigation Styles */
+header nav {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+    margin-bottom: 0;
+}
+
+/* Default state: Hide navigation on small screens */
+header nav ul {
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0;
+}
+
+header nav ul li a {
+    color: #fff;
+    font-size: clamp(1rem, 3vw, 1.6rem);
+    font-weight: bold;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-shadow: 
+    0 0 5px #00cccc,  /* Light cyan glow */
+    0 0 10px #00cccc, /* Cyan glow */
+    0 0 15px #00cccc, /* Stronger cyan glow */
+    0 0 20px #00cccc; /* Darker green glow */
+}
+
+/* Hover Effect */
+header nav ul li a:hover {
+    background-color: #008b8b;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Hamburger Icon */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    z-index: 20;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger .bar {
+    width: 100%;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Show Hamburger on Mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; /* Show the hamburger on small screens */
+    }
+
+    /* Dropdown menu for the navigation */
+    header nav ul {
+        display: none; /* Hide the menu initially */
+        flex-direction: column;
+        width: 80%; /* Set the width to 80% of the screen or adjust as needed */
+        position: absolute;
+        top:absolute; /* Position the menu directly below the hamburger icon */
+        right: -450px;
+        background-color: #222; /* Solid background color */
+        padding: 10px 100px 10px 80px; /* Increase the padding on top and bottom for extra space */
+        border-radius: 8px; /* Rounded corners */
+        left: unset; /* Center the dropdown menu */
+        transform: translateX(-50%); /* This ensures the menu is centered horizontally */
+        box-sizing: border-box; /* Ensure padding is included in the total width */
+    }
+
+    header nav ul li {
+        margin: 10px -50px;
+        text-align: right;
+        padding-top: -100px;
+    }
+
+    header nav ul li a {
+        font-size: 1.6rem;
+    }
+
+    /* Show the menu when hamburger is clicked */
+    header nav ul.open {
+        display: flex; /* Make the menu visible */
+    }
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: calc(100vh / 1.2); /* Decrease height by a factor of 1.2 */
+    overflow: hidden;
+    background: linear-gradient(45deg, #222, #111);
+    animation: gradient-shift 10s infinite alternate;
+}
+
+.hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px); /* Slight blur for video background */
+}
+
+/* Hero Text */
+.hero-text {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(1rem, 1vw, 2rem);
+    font-weight: bold;
+    color: #00ffff;
+    z-index: 2;
+    text-align: center;
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker semi-transparent background for better contrast */
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem; /* Adjust size as needed */
+    color: #00ffff; /* Cyan color */
+    overflow: hidden; /* Hide overflowing text */
+    white-space: nowrap; /* Prevent wrapping */
+    border-right: 4px solid #00ffff; /* Cursor effect */
+    animation: typing 4s steps(40, end), blink 0.5s step-end infinite alternate, glow 2s infinite alternate;
+    text-shadow: 
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 30px #00ffff,
+        0 0 40px #00ffff;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    
+}
+
+.hero-text h1.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Typing animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Blinking cursor */
+@keyframes blink {
+    from {
+        border-color: transparent;
+    }
+    to {
+        border-color: #00ffff;
+    }
+}
+
+/* Glow Animation */
+@keyframes glow {
+    0% {
+        text-shadow: 
+            0 0 10px #00ffff,
+            0 0 20px #00ffff,
+            0 0 30px #00ffff,
+            0 0 40px #00ffff;
+    }
+    100% {
+        text-shadow: 
+            0 0 20px #00cc00,
+            0 0 30px #00cc00,
+            0 0 40px #00cc00,
+            0 0 50px #00cc00;
+    }
+}
+
+@keyframes gradient-shift {
+    0% {
+        background: linear-gradient(45deg, #222, #111);
+    }
+    50% {
+        background: linear-gradient(45deg, #111, #222);
+    }
+    100% {
+        background: linear-gradient(45deg, #222, #111);
+    }
+}
+
+/* Stats Section Overlay on Video */
+/* Stats Section Overlay */
+.stats-overlay {
+    position: relative; /* Make the stats a part of the normal flow */
+    margin-top: -100px; /* Adjust the position to overlay the video */
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    z-index: 3; /* Ensure it stays above the video */
+    
+}
+
+.stat-item {
+    background-color: rgba(0, 0, 0, 0.8); /* Transparent background for the stats */
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    flex: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    border: 2px solid #00cccc; /* Initial green border */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+/* Text in Stat Items */
+.stat-item strong {
+    font-size: 2.5rem; /* Larger numbers */
+    display: block;
+    color: #00cccc; /* Green text for numbers */
+    margin-bottom: 10px;
+}
+
+.stat-item h3 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.stat-item p {
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+/* Hover Effect */
+.stat-item:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    border: 2px solid #00ffff; /* Change border color to cyan on hover */
+    box-shadow: 0 8px 20px rgba(0, 204, 255, 0.6); /* Glow effect on hover */
+}
+
+/* Contact Us Button */
+.contact-btn {
+    display: inline-block;
+    background-color: #008b8b; /* Cyan background for Contact Us button */
+    color: white; /* White text */
+    font-size: 1.6rem; /* Font size */
+    font-weight: bold; /* Bold text */
+    padding: 15px 30px; /* Padding for the button */
+    border-radius: 30px; /* Rounded corners */
+    margin-top: 20px; /* Space between the text and the button */
+    text-decoration: none; /* Remove underline */
+    text-align: center; /* Center align text */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 0 4px 10px rgba(0, 139, 139, 0.3); /* Subtle cyan shadow for depth */
+    position: relative; /* Standard positioning */
+    transform: translateY(0); /* Start in its position */
+}
+
+/* Hover Effect for Contact Us Button */
+.contact-btn:hover {
+    background-color: #00cc00; /* Green background on hover */
+    box-shadow: 0 0 15px rgba(0, 204, 0, 0.7); /* Larger glow effect on hover */
+    transform: scale(1.05); /* Slight scale-up on hover */
+}
+
+
+
+/* About Page Styles */
+
+/* About Page Hero Section */
+.about-hero {
+    position: relative;
+    width: 100%;
+    height: calc(100vh / 1.2); /* Same as the index page */
+    overflow: hidden;
+}
+
+.about-hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px); /* Slight blur for the video background */
+}
+
+/* Overlay Content for About Page */
+.about-content {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position */
+    z-index: 2; /* Ensure content is above the video */
+    text-align: center;
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    border-radius: 8px; /* Rounded corners for elegance */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between sections */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Styling for Headers */
+.about-content h1,
+.about-content h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 20px;
+    color: #00ffff; /* Cyan text for both headers */
+    text-shadow: 
+        0 0 5px #00cccc,
+        0 0 10px #00cccc,
+        0 0 15px #00cccc;
+}
+
+.about-content p {
+    font-size: 1.2rem;
+    color: #ddd; /* Subtle light gray text */
+    line-height: 1.6;
+}
+
+/* Add Glowing Effect to Headers on Hover */
+.about-content h1:hover,
+.about-content h2:hover {
+    text-shadow: 
+        0 0 10px #00ffcc,
+        0 0 20px #00ffcc,
+        0 0 30px #00ffcc;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .about-hero-content {
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
+
+    .about-hero h1 {
+        font-size: 2rem;
+    }
+
+    .about-us p, .our-vision p {
+        font-size: 1rem;
+    }
+}
+
+
+/* Hero Section - Services Page */
+.hero.services-hero {
+    height: calc(100vh / 1.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero.services-hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px); /* Slight blur for better contrast */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; /* Align hero text and grid properly */
+    padding: 20px;
+    z-index: 2;
+}
+
+.hero-text-services {
+    text-align: center;
+    color: #00cccc; /* Cyan matching header */
+    background-color: rgba(0, 0, 0, 0.7); /* Darker semi-transparent background */
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 160px; /* Adjust vertical spacing from the header */
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
+    gap: 20px;
+    width: 90%;
+    padding: 10px;
+}
+
+.service-box {
+    background-color: rgba(0, 0, 0, 0.8); /* Transparent background for the stats */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #00cccc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.service-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.service-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #00cccc;
+}
+
+.service-box ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.service-box li {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+/* Hover Effect */
+.service-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 204, 255, 0.5);
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: #888;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    margin-top: 40px; /* Add space to separate from the stats */
+    position: relative;
+}
